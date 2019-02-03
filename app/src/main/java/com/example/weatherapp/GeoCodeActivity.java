@@ -23,7 +23,7 @@ public class GeoCodeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_geo_code);
 
         btnShowCoord = (Button)findViewById(R.id.btnShowCoordinates);
         edtAddress = (EditText)findViewById(R.id.edtAddress);
@@ -55,13 +55,13 @@ public class GeoCodeActivity extends AppCompatActivity {
             try{
                 String address = strings[0];
                 HttpDataHandler http = new HttpDataHandler();
-                String url = String.format("https://maps.googleapis.com/maps/api/geocode/json?address=%s",address);
+                String url = String.format("https://maps.googleapis.com/maps/api/geocode/json?address=%s,+CA&key=AIzaSyDXZqzYwwJKXm6DNMmRVNKlhJHkA-l43W4",address);
                 response = http.getHTTPData(url);
                 return response;
             }
             catch (Exception ex)
             {
-
+                System.out.println("Exception in GeocodeActivyt, doInBackground");
             }
             return null;
         }

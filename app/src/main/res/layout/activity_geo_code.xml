@@ -8,27 +8,40 @@
 
     <EditText
         android:id="@+id/edtAddress"
-        android:hint="Enter your address"
-        android:layout_above="@+id/btnShowCoordinates"
-        android:layout_marginBottom="20dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btnShowCoordinates"
+        android:layout_marginTop="8dp"
+        android:hint="Enter your address"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp" />
 
     <Button
-        style="@style/Widget.AppCompat.Button.Colored"
         android:id="@+id/btnShowCoordinates"
-        android:layout_centerInParent="true"
-        android:text="Get Coordinates"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="Get Coordinates"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtAddress"
+        app:layout_constraintVertical_bias="0.64"
+        tools:layout_editor_absoluteX="0dp" />
 
     <TextView
         android:id="@+id/txtCoordinates"
-        android:textSize="40px"
+        android:layout_width="108dp"
+        android:layout_height="61dp"
         android:layout_below="@id/btnShowCoordinates"
-        android:layout_marginTop="20dp"
         android:layout_centerInParent="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="246dp"
+        android:textSize="40px"
+        app:layout_constraintBottom_toTopOf="@+id/btnShowCoordinates"
+        app:layout_constraintTop_toBottomOf="@+id/edtAddress"
+        app:layout_constraintVertical_bias="1.0"
+        tools:layout_editor_absoluteX="151dp" />
 
 </android.support.constraint.ConstraintLayout>
