@@ -1,5 +1,7 @@
 package com.example.weatherapp;
 
+import android.content.Intent;
+import android.os.Handler;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 
@@ -11,6 +13,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+    private static int TIME_OUT = 5000; //Time to launch the another activity
 
     private GoogleMap mMap;
     private static final String LATITUDE = "Latitude";
@@ -24,6 +27,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                String lat = getIntent().getStringExtra(LATITUDE);
+                String lng = getIntent().getStringExtra(LONGITUDE);
+                Intent weatherIntent = new Intent(MapsActivity.this, WeatherActivity.class);
+                weatherIntent.putExtra(LATITUDE, lat);
+                weatherIntent.putExtra(LONGITUDE, lng);
+                startActivity(weatherIntent);
+                finish();
+            }
+        }, TIME_OUT);
     }
 
 
