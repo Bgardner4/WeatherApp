@@ -15,7 +15,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 
 //API Key
@@ -27,6 +33,12 @@ public class WeatherActivity extends AppCompatActivity {
     TextView txtSum;
     //adding forecastapi stuff
 
+    static String convertStreamToString(java.io.InputStream is) {
+        java.util.Scanner s = new java.util.Scanner(is).useDelimiter("\\A");
+        if(s.hasNext()) return s.next();
+        else return "";
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,8 +49,6 @@ public class WeatherActivity extends AppCompatActivity {
         String lat = getIntent().getStringExtra(LATITUDE);
         String lng = getIntent().getStringExtra(LONGITUDE);
         new GetWeather().execute(lat, lng);
-
-        //ForecastApi.create("6a0fca6bf01cd2eae94603d86dfc3a89");
 
     }
 
@@ -57,8 +67,8 @@ public class WeatherActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(String... strings) {
 
-            String response;
-            try{
+            String response = null;
+            /*try{
 
                 String lat = strings[0];
                 String lng = strings[1];
@@ -71,25 +81,20 @@ public class WeatherActivity extends AppCompatActivity {
             {
                 System.out.println("Exception in GeocodeActivity, doInBackground");
             }
-            return null;
-             /*
-                ForecastRequest request = new ForecastRequestBuilder()
-                        .key(new APIKey("6a0fca6bf01cd2eae94603d86dfc3a89"))
-                        .location(new GeoCoordinates(new Longitude(Double.parseDouble(lng)), new Latitude(Double.parseDouble(lat)))).build();
+            return null;*/
+            try {
+                URL url = new URL("https://api.darksky.net/forecast/6a0fca6bf01cd2eae94603d86dfc3a89/" + strings[0] + "," + strings[1]);
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("GET");
+                InputStream in = new BufferedInputStream(conn.getInputStream());
+                response = convertStreamToString(in);
 
-                DarkSkyClient client = new DarkSkyClient();
+            } catch(java.net.MalformedURLException ex){
 
-                try {
-                    forecast = client.forecastJsonString(request);
-                    return forecast;
-                } catch (ForecastException e) {
-                    e.printStackTrace();
-                }
-
-*/
-
-
-
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return response;
         }
 
         @Override
@@ -97,9 +102,10 @@ public class WeatherActivity extends AppCompatActivity {
             try{
 
                 Log.d("REACHED POSTEXECUTE", "got to this stage");
-                JSONObject jsonObject = new JSONObject(s);
+                JSONObject json = new JSONObject(s);
 
-                String summary = ((JSONArray)jsonObject.get("currently")).getJSONObject(0).getJSONObject("summary").toString();
+                //String summary = ((JSONArray)jsonObject.get("currently")).getJSONObject(0).getJSONObject("summary").toString();
+                String summary = json.getJSONObject("currently").getString("summary");
                 txtSum.setText(String.format("Current Weather Summary: %s", summary));
                 //String lng = ((JSONArray)jsonObject.get("results")).getJSONObject(0).getJSONObject("geometry")
                   //      .getJSONObject("location").get("lng").toString();

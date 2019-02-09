@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/btnShowCoordinates"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="72dp"
         android:hint="Enter your address"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="0dp" />
@@ -27,7 +27,7 @@
         android:text="Get Coordinates"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtAddress"
-        app:layout_constraintVertical_bias="0.64"
+        app:layout_constraintVertical_bias="0.016"
         tools:layout_editor_absoluteX="0dp" />
 
     <TextView
