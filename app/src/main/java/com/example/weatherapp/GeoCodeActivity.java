@@ -16,7 +16,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class GeoCodeActivity extends AppCompatActivity {
-
+    //Rabia driving
     Button btnShowCoord;
     EditText edtAddress;
     TextView txtCoord;
@@ -51,7 +51,7 @@ public class GeoCodeActivity extends AppCompatActivity {
             dialog.setCanceledOnTouchOutside(false);
             dialog.show();
         }
-
+        //End of Rabia driving, Blake driving now
         @Override
         protected String doInBackground(String... strings) {
             String response;
