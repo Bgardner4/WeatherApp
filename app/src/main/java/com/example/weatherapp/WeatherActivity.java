@@ -17,6 +17,7 @@ import java.net.URL;
 
 
 public class WeatherActivity extends AppCompatActivity {
+    //Rabia driving
     private static final String LATITUDE = "Latitude";
     private static final String LONGITUDE = "Longitude";
 
@@ -29,13 +30,13 @@ public class WeatherActivity extends AppCompatActivity {
     TextView txtCloudCov;
     TextView txtWindSpeed;
     TextView txtUVIndex;
-
+    //End of Rabia driving, Blake driving now
     static String convertStreamToString(java.io.InputStream is) {
         java.util.Scanner s = new java.util.Scanner(is).useDelimiter("\\A");
         if(s.hasNext()) return s.next();
         else return "";
     }
-
+    //End of Blake driving, Rabia driving now
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,7 +70,7 @@ public class WeatherActivity extends AppCompatActivity {
             dialog.show();
 
         }
-
+        //End of Rabia driving, Blake driving now
         @Override
         protected String doInBackground(String... strings) {
 
@@ -89,7 +90,7 @@ public class WeatherActivity extends AppCompatActivity {
             }
             return response;
         }
-
+        //End of Blake driving, Rabia driving now
         @Override
         protected void onPostExecute(String s){
             try{
