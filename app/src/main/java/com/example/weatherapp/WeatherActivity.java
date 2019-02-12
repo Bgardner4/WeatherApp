@@ -73,19 +73,16 @@ public class WeatherActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(String... strings) {
 
-            String response = null;
-
-            try {
-                URL url = new URL("https://api.darksky.net/forecast/6a0fca6bf01cd2eae94603d86dfc3a89/" + strings[0] + "," + strings[1]);
-                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                conn.setRequestMethod("GET");
-                InputStream in = new BufferedInputStream(conn.getInputStream());
-                response = convertStreamToString(in);
-
-            } catch(java.net.MalformedURLException ex){
-
-            } catch (IOException e) {
-                e.printStackTrace();
+            String response = "";
+            try{
+                HttpDataHandler http = new HttpDataHandler();
+                String url = String.format("https://api.darksky.net/forecast/6a0fca6bf01cd2eae94603d86dfc3a89/%s,%s", strings[0], strings[1]);
+                response = http.getHTTPData(url);
+                return response;
+            }
+            catch (Exception ex)
+            {
+                System.out.println("Exception in WeatherActivity, doInBackground");
             }
             return response;
         }

@@ -25,7 +25,7 @@ public class HttpDataHandler {
             conn.setReadTimeout(15000);
             conn.setConnectTimeout(15000);
             conn.setDoInput(true);
-            conn.setDoOutput(true);
+            conn.setDoOutput(false);
             conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
             Log.d("UPCOMING RESPONSE CODE", "see if up to here you get that error");
             int responseCode = conn.getResponseCode();
