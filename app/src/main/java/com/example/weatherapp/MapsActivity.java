@@ -14,7 +14,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
     //Blake driving
-    private static int TIME_OUT = 3000; //Time to launch the another activity
+    private static int TIME_OUT = 4000; //Time to launch the another activity
 
     private GoogleMap mMap;
     private static final String LATITUDE = "Latitude";
